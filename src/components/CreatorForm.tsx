@@ -19,7 +19,7 @@ const CreatorForm = () => {
   // UPDATE STATE TO HANDLE YOUR TYPE
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
+  
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [message, setMessage] = useState<string>("");
@@ -67,7 +67,7 @@ const CreatorForm = () => {
           mb={2}
         />
         <Textarea
-          placeholder="Description"
+          placeholder="Body"
           value={body}
           onChange={handleBodyChange}
           mb={4}
