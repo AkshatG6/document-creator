@@ -18,8 +18,8 @@ import createThing from "../services/createThing";
 const CreatorForm = () => {
   // UPDATE STATE TO HANDLE YOUR TYPE
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  
+  const [body, setBody] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [message, setMessage] = useState<string>("");
@@ -29,8 +29,8 @@ const CreatorForm = () => {
     setTitle(event.target.value);
   };
 
-  const handleDescriptionChange = (event: { target: { value: any } }) => {
-    setDescription(event.target.value);
+  const handleBodyChange = (event: { target: { value: any } }) => {
+    setBody(event.target.value);
   };
 
   const handleSubmit = async () => {
@@ -38,7 +38,7 @@ const CreatorForm = () => {
     // UPDATE OBJECT TO MATCH YOUR TYPE
     const response = await createThing({
       title,
-      description,
+      body,
     });
     if (response.error) {
       setMessage(response.error);
@@ -47,7 +47,7 @@ const CreatorForm = () => {
       setMessage("successfully created");
       onOpen();
       setTitle("");
-      setDescription("");
+      setBody("");
     }
     setIsLoading(false);
   };
@@ -68,13 +68,13 @@ const CreatorForm = () => {
         />
         <Textarea
           placeholder="Description"
-          value={description}
-          onChange={handleDescriptionChange}
+          value={body}
+          onChange={handleBodyChange}
           mb={4}
         />
         <Button
           onClick={handleSubmit}
-          isDisabled={title.length < 1 || description.length < 1}
+          isDisabled={title.length < 1 || body.length < 1}
         >
           Submit
         </Button>
